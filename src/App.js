@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { AddUser } from "./compoonents/AddUser";
+import { User } from "./compoonents/User";
 
 export default function App() {
   const [users, setUsers] = useState([]);
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -21,7 +24,7 @@ export default function App() {
         email: email,
       }),
       headers: {
-        "Content-type": "applcation/json; charset=UTF-8",
+        "Content-type": "application/json; charset=UTF-8",
       },
     })
       .then((response) => {
@@ -56,6 +59,7 @@ export default function App() {
         }
       })
       .then((data) => {
+        // setUsers((users) => [...users, data]);
         const updatedUsers = users.map((user) => {
           if (user.id === id) {
             user.name = name;
@@ -89,8 +93,19 @@ export default function App() {
   };
 
   return (
-    <div>
+    <div className="App">
       <h1>Users</h1>
+      <AddUser onAdd={onAdd} />
+      {users.map((user) => (
+        <User
+          id={user.id}
+          key={user.id}
+          name={user.name}
+          email={user.email}
+          onEdit={onEdit}
+          onDelete={onDelete}
+        />
+      ))}
     </div>
   );
 }
