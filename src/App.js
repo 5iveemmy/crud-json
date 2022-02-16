@@ -1,7 +1,9 @@
+import FormValid from "./compoonent/FormValid";
+
 function App() {
   return (
     <div className="App">
-      <h1>Welcome to crud</h1>
+      <FormValid />
     </div>
   );
 }
