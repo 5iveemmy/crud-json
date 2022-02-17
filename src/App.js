@@ -119,7 +119,7 @@ export default function App() {
     <ForApp>
       <Container>
         <GlobalStyle />
-        <AppHead>Users</AppHead>
+        <AppHead>Add Users</AppHead>
         <AddUser onAdd={onAdd} />
         {users.map((user) => (
           <User

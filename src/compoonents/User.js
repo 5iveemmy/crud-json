@@ -25,12 +25,44 @@ export const User = ({ name, email, id, onEdit, onDelete }) => {
   const EditName = styled.input``;
   const EditEmail = styled.input``;
   const Save = styled.button``;
-  const Users = styled.div``;
+  const Users = styled.div`
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0px;
+    border-bottom: 0.5px solid #fff;
+  `;
   const SpanName = styled.span``;
   const SpanEmail = styled.span``;
-  const UsersDiv = styled.div``;
-  const Edit = styled.button``;
-  const Delete = styled.button``;
+  const UsersDiv = styled.div`
+    display: flex;
+    justify-content: space-between;
+  `;
+  const EditBtn = styled.button`
+    background-color: #ff4c6a;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    &:hover {
+      background: #f7748a;
+      cursor: pointer;
+    }
+  `;
+  const DeleteBtn = styled.button`
+    background-color: #ff4c6a;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    &:hover {
+      background: #f7748a;
+      cursor: pointer;
+    }
+  `;
+  const EditWrap = styled.div`
+    padding: 0px 5px;
+  `;
+  const DeleteWrap = styled.div`
+    padding: 0px 5px;
+  `;
 
   return (
     <UserWrap>
@@ -45,8 +77,12 @@ export const User = ({ name, email, id, onEdit, onDelete }) => {
           <SpanName className="user-name">{name}</SpanName>
           <SpanEmail className="user-email">{email}</SpanEmail>
           <UsersDiv>
-            <Edit onClick={handleEdit}>Edit</Edit>
-            <Delete onClick={handleDelete}>Delete</Delete>
+            <EditWrap>
+              <EditBtn onClick={handleEdit}>Edit</EditBtn>
+            </EditWrap>
+            <DeleteWrap>
+              <DeleteBtn onClick={handleDelete}>Delete</DeleteBtn>
+            </DeleteWrap>
           </UsersDiv>
         </Users>
       )}

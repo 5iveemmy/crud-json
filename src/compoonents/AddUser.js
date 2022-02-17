@@ -5,9 +5,20 @@ import styled from "styled-components";
 export const AddUser = ({ onAdd }) => {
   const {
     register,
-    formState: { errors },
+    formState: { errors, dirtyFields },
     handleSubmit,
-  } = useForm();
+  } = useForm({
+    mode: "onChange",
+    defaultValues: {
+      email: "",
+      password: "",
+      confirmPassword: "",
+      username: "",
+      firstName: "",
+      surname: "",
+      isShop: false,
+    },
+  });
 
   const handleOnSubmit = (e) => {
     console.log({ e });
@@ -15,10 +26,6 @@ export const AddUser = ({ onAdd }) => {
   };
 
   const Form = styled.form``;
-
-  const Head = styled.h3`
-    text-align: center;
-  `;
 
   const Input = styled.input`
     background-color: #2d2d2d;
@@ -51,16 +58,37 @@ export const AddUser = ({ onAdd }) => {
     }
   `;
 
+  const ErrorSpan = styled.span`
+    padding-top: 10px;
+  `;
+
   return (
     <Form onSubmit={handleSubmit(handleOnSubmit)}>
-      <Head>Add User</Head>
       <InputWrap>
-        <Input placeholder="Name" {...register("name", { required: true })} />
+        <Input
+          {...register("name", { required: true })}
+          placeholder="Enter your name..."
+          type="name"
+          name="name"
+        />
         {errors.name?.type === "required" && "Name is required"}
       </InputWrap>
       <InputWrap>
-        <Input placeholder="Email" {...register("email", { required: true })} />
-        {errors.email?.type === "required" && "Email is required"}
+        <Input
+          {...register("email", {
+            required: "Please enter your email address",
+            pattern: {
+              value:
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+              message: "Invalid email address",
+            },
+          })}
+          placeholder="Enter your email..."
+          type="email"
+          name="email"
+          className={!errors.email && dirtyFields.email}
+        />
+        <ErrorSpan>{errors.email?.message}</ErrorSpan>
       </InputWrap>
       <AddWrap>
         <AddBtn type="submit">Add</AddBtn>
