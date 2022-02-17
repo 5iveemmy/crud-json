@@ -20,17 +20,49 @@ export const User = ({ name, email, id, onEdit, onDelete }) => {
 
   const UserWrap = styled.div``;
 
-  const EditForm = styled.form``;
+  const EditForm = styled.form`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 5px;
+  `;
 
-  const EditName = styled.input``;
-  const EditEmail = styled.input``;
-  const Save = styled.button``;
+  const EditName = styled.input`
+    background-color: #2d2d2d;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    outline: none;
+    padding: 7px;
+  `;
+
+  const EditEmail = styled.input`
+    background-color: #2d2d2d;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    outline: none;
+    padding: 7px;
+  `;
+
+  const Save = styled.button`
+    background-color: #ff4c6a;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    &:hover {
+      background: #f7748a;
+      cursor: pointer;
+    }
+  `;
+
   const Users = styled.div`
     display: flex;
     justify-content: space-between;
     padding: 8px 0px;
     border-bottom: 0.5px solid #fff;
   `;
+
   const SpanName = styled.span``;
   const SpanEmail = styled.span``;
   const UsersDiv = styled.div`
@@ -64,13 +96,28 @@ export const User = ({ name, email, id, onEdit, onDelete }) => {
     padding: 0px 5px;
   `;
 
+  const EditEmailWrap = styled.div`
+    padding: 5px;
+  `;
+  const EditNameWrap = styled.div`
+    padding: 5px;
+  `;
+
+  const SaveWrap = styled.div``;
+
   return (
     <UserWrap>
       {isEdit ? (
         <EditForm onSubmit={handleOnEditSubmit}>
-          <EditName placeholder="Name" name="name" defaultValue={name} />
-          <EditEmail placeholder="Email" name="email" defaultValue={email} />
-          <Save onSubmit={handleOnEditSubmit}>Save</Save>
+          <EditNameWrap>
+            <EditName placeholder="Name" name="name" defaultValue={name} />
+          </EditNameWrap>
+          <EditEmailWrap>
+            <EditEmail placeholder="Email" name="email" defaultValue={email} />
+          </EditEmailWrap>
+          <SaveWrap>
+            <Save onSubmit={handleOnEditSubmit}>Save</Save>
+          </SaveWrap>
         </EditForm>
       ) : (
         <Users>
