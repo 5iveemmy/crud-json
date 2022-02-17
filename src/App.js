@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { AddUser } from "./compoonents/AddUser";
 import { User } from "./compoonents/User";
 import styled from "styled-components";
+import { Container, GlobalStyle } from "./compoonents/Global";
 
 export default function App() {
   const [users, setUsers] = useState([]);
@@ -103,22 +104,32 @@ export default function App() {
 
   //Styled components
 
-  const ForApp = styled.div``;
+  const ForApp = styled.div`
+    background-color: #2d2d2d;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+  `;
+
+  const Head = styled.h1``;
 
   return (
     <ForApp>
-      <h1>Users</h1>
-      <AddUser onAdd={onAdd} />
-      {users.map((user) => (
-        <User
-          id={user.id}
-          key={user.id}
-          name={user.name}
-          email={user.email}
-          onEdit={onEdit}
-          onDelete={onDelete}
-        />
-      ))}
+      <Container>
+        <GlobalStyle />
+        <Head>Users</Head>
+        <AddUser onAdd={onAdd} />
+        {users.map((user) => (
+          <User
+            id={user.id}
+            key={user.id}
+            name={user.name}
+            email={user.email}
+            onEdit={onEdit}
+            onDelete={onDelete}
+          />
+        ))}
+      </Container>
     </ForApp>
   );
 }

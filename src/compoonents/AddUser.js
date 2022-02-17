@@ -1,5 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import styled from "styled-components";
 
 export const AddUser = ({ onAdd }) => {
   const {
@@ -8,27 +9,21 @@ export const AddUser = ({ onAdd }) => {
     handleSubmit,
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
-  };
-
   const handleOnSubmit = (e) => {
-    e.preventDefault();
-    onAdd(e.target.name.value, e.target.email.value);
-    e.target.name.value = "";
-    e.target.email.value = "";
+    console.log({ e });
+    onAdd(e.name, e.email);
   };
 
+  const Form = styled.form``;
   return (
-    <form onSubmit={handleOnSubmit && handleSubmit(onSubmit)}>
+    <Form onSubmit={handleSubmit(handleOnSubmit)}>
       <h3>Add User</h3>
       <input placeholder="Name" {...register("name", { required: true })} />
       {errors.name?.type === "required" && "Name is required"}
       <input placeholder="Email" {...register("email", { required: true })} />
       {errors.email?.type === "required" && "Email is required"}
-
-      <button onSubmit={handleOnSubmit}>Add</button>
+      <button type="submit">Add</button>
       <hr />
-    </form>
+    </Form>
   );
 };
