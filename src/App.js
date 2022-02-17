@@ -111,13 +111,15 @@ export default function App() {
     justify-content: center;
   `;
 
-  const Head = styled.h1``;
+  const AppHead = styled.h1`
+    text-align: center;
+  `;
 
   return (
     <ForApp>
       <Container>
         <GlobalStyle />
-        <Head>Users</Head>
+        <AppHead>Users</AppHead>
         <AddUser onAdd={onAdd} />
         {users.map((user) => (
           <User

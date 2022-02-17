@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styled from "styled-components";
 
 export const User = ({ name, email, id, onEdit, onDelete }) => {
   const [isEdit, setIsEdit] = useState(false);
@@ -17,24 +18,38 @@ export const User = ({ name, email, id, onEdit, onDelete }) => {
     setIsEdit(!isEdit);
   };
 
+  const UserWrap = styled.div``;
+
+  const EditForm = styled.form``;
+
+  const EditName = styled.input``;
+  const EditEmail = styled.input``;
+  const Save = styled.button``;
+  const Users = styled.div``;
+  const SpanName = styled.span``;
+  const SpanEmail = styled.span``;
+  const UsersDiv = styled.div``;
+  const Edit = styled.button``;
+  const Delete = styled.button``;
+
   return (
-    <div>
+    <UserWrap>
       {isEdit ? (
-        <form onSubmit={handleOnEditSubmit}>
-          <input placeholder="Name" name="name" defaultValue={name} />
-          <input placeholder="Email" name="email" defaultValue={email} />
-          <button onSubmit={handleOnEditSubmit}>Save</button>
-        </form>
+        <EditForm onSubmit={handleOnEditSubmit}>
+          <EditName placeholder="Name" name="name" defaultValue={name} />
+          <EditEmail placeholder="Email" name="email" defaultValue={email} />
+          <Save onSubmit={handleOnEditSubmit}>Save</Save>
+        </EditForm>
       ) : (
-        <div className="user">
-          <span className="user-name">{name}</span>
-          <span className="user-email">{email}</span>
-          <div>
-            <button onClick={handleEdit}>Edit</button>
-            <button onClick={handleDelete}>Delete</button>
-          </div>
-        </div>
+        <Users>
+          <SpanName className="user-name">{name}</SpanName>
+          <SpanEmail className="user-email">{email}</SpanEmail>
+          <UsersDiv>
+            <Edit onClick={handleEdit}>Edit</Edit>
+            <Delete onClick={handleDelete}>Delete</Delete>
+          </UsersDiv>
+        </Users>
       )}
-    </div>
+    </UserWrap>
   );
 };
