@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { AddUser } from "./compoonents/AddUser";
 import { User } from "./compoonents/User";
+import styled from "styled-components";
 
 export default function App() {
   const [users, setUsers] = useState([]);
@@ -9,12 +10,16 @@ export default function App() {
     fetchData();
   }, []);
 
+  //FetchData
+
   const fetchData = async () => {
     await fetch("https://jsonplaceholder.typicode.com/users")
       .then((response) => response.json())
       .then((data) => setUsers(data))
       .catch((error) => console.log(error));
   };
+
+  //POST api
 
   const onAdd = async (name, email) => {
     await fetch("https://jsonplaceholder.typicode.com/users", {
@@ -39,6 +44,8 @@ export default function App() {
       })
       .catch((error) => console.log(error));
   };
+
+  //PUT api
 
   const onEdit = async (id, name, email) => {
     await fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
@@ -74,6 +81,8 @@ export default function App() {
       .catch((error) => console.log(error));
   };
 
+  //DELETE api
+
   const onDelete = async (id) => {
     await fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
       method: "DELETE",
@@ -92,8 +101,12 @@ export default function App() {
       .catch((error) => console.log(error));
   };
 
+  //Styled components
+
+  const ForApp = styled.div``;
+
   return (
-    <div className="App">
+    <ForApp>
       <h1>Users</h1>
       <AddUser onAdd={onAdd} />
       {users.map((user) => (
@@ -106,6 +119,6 @@ export default function App() {
           onDelete={onDelete}
         />
       ))}
-    </div>
+    </ForApp>
   );
 }

@@ -22,8 +22,8 @@ export const AddUser = ({ onAdd }) => {
   return (
     <form onSubmit={handleOnSubmit && handleSubmit(onSubmit)}>
       <h3>Add User</h3>
-      <input placeholder="Name" name="name" />
-      {/* <input placeholder="Email" name="email" /> */}
+      <input placeholder="Name" {...register("name", { required: true })} />
+      {errors.name?.type === "required" && "Name is required"}
       <input placeholder="Email" {...register("email", { required: true })} />
       {errors.email?.type === "required" && "Email is required"}
 
