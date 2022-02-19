@@ -64,7 +64,9 @@ export const User = ({ name, email, id, onEdit, onDelete }) => {
   `;
 
   const SpanName = styled.span``;
+
   const SpanEmail = styled.span``;
+
   const UsersDiv = styled.div`
     display: flex;
     justify-content: space-between;
@@ -79,6 +81,7 @@ export const User = ({ name, email, id, onEdit, onDelete }) => {
       cursor: pointer;
     }
   `;
+
   const DeleteBtn = styled.button`
     background-color: #ff4c6a;
     border: none;
@@ -89,9 +92,11 @@ export const User = ({ name, email, id, onEdit, onDelete }) => {
       cursor: pointer;
     }
   `;
+
   const EditWrap = styled.div`
     padding: 0px 5px;
   `;
+
   const DeleteWrap = styled.div`
     padding: 0px 5px;
   `;
@@ -99,6 +104,7 @@ export const User = ({ name, email, id, onEdit, onDelete }) => {
   const EditEmailWrap = styled.div`
     padding: 5px;
   `;
+
   const EditNameWrap = styled.div`
     padding: 5px;
   `;
